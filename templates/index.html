@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitor Monitor | Intelligence Dashboard</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">COMPETITOR <span>MONITOR</span></div>
+    <div class="status">
+        <span class="status-dot"></span>
+        INTELLIGENCE DASHBOARD
+    </div>
+</header>
+
+<main class="container">
+
+    <section class="hero">
+        <p class="eyebrow">COMPETITIVE INTELLIGENCE</p>
+        <h1>Know what your<br>
+            <span>competitors do next.</span>
+        </h1>
+        <p class="subtitle">
+            Discover content, monitor pricing and explore SEO keywords.
+        </p>
+    </section>
+
+    <section class="panel scan-panel">
+        <h2>Monitor a competitor</h2>
+
+        <form method="POST" action="/">
+            <input
+                type="text"
+                name="domain"
+                placeholder="e.g. hubspot.com"
+                aria-label="Competitor domain"
+                required
+            >
+            <button type="submit">Scan competitor ↗</button>
+        </form>
+
+        {% if message %}
+        <div class="alert success" role="status">
+            <strong>Scan result</strong>
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="alert error" role="alert">
+            <strong>Scan failed</strong>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="stats-grid">
+        <div class="stat-card">
+            <p class="stat-label">COMPETITORS</p>
+            <h2>{{ competitors|length }}</h2>
+            <p class="stat-description">Domains being monitored</p>
+        </div>
+
+        <div class="stat-card">
+            <p class="stat-label">ARTICLES SAVED</p>
+            <h2>{{ articles|length }}</h2>
+            <p class="stat-description">Latest saved articles</p>
+        </div>
+
+        <div class="stat-card">
+            <p class="stat-label">LATEST SCAN</p>
+            {% if competitors and competitors[0].last_scanned %}
+                <h2 class="date-value">
+                    {{ competitors[0].last_scanned[:10] }}
+                </h2>
+            {% else %}
+                <h2 class="date-value">Not yet</h2>
+            {% endif %}
+            <p class="stat-description">Most recently added competitor first</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">YOUR WATCHLIST</p>
+                <h2>Tracked competitors</h2>
+            </div>
+            <span class="count-badge">
+                {{ competitors|length }} tracked
+            </span>
+        </div>
+
+        {% if competitors %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>DOMAIN</th>
+                        <th>LAST SCANNED (UTC)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in competitors %}
+                    <tr>
+                        <td><strong>{{ c.domain }}</strong></td>
+                        <td>{{ c.last_scanned or "Never scanned" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>No competitors yet</h3>
+            <p>Add a public competitor domain using the form above.</p>
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">CONTENT INTELLIGENCE</p>
+                <h2>Discovered articles</h2>
+            </div>
+            <span class="count-badge">{{ articles|length }} shown</span>
+        </div>
+
+        {% if articles %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ARTICLE</th>
+                        <th>COMPETITOR</th>
+                        <th>PUBLISHED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in articles %}
+                    <tr>
+                        <td class="article-cell">
+                            <a href="{{ a.url }}" target="_blank"
+                               rel="noopener noreferrer">
+                                {{ a.title or a.url }}
+                            </a>
+                            <p class="description">
+                                {{ a.description or "No description available." }}
+                            </p>
+                        </td>
+                        <td>{{ a.domain }}</td>
+                        <td>{{ a.published_date or "Unknown" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>No articles discovered</h3>
+            <p>Run a scan to discover accessible competitor content.</p>
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">PRICE INTELLIGENCE</p>
+                <h2>Pricing changes</h2>
+            </div>
+            <span class="count-badge">
+                {{ pricing_history|length }} snapshots
+            </span>
+        </div>
+
+        <p class="section-description">
+            Pricing page snapshots recorded during scans. A changed
+            fingerprint indicates page-content changes, not necessarily
+            a confirmed price change.
+        </p>
+
+        {% if pricing_history %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>COMPETITOR</th>
+                        <th>PRICING PAGE</th>
+                        <th>CAPTURED AT (UTC)</th>
+                        <th>FINGERPRINT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in pricing_history %}
+                    <tr>
+                        <td>{{ p.domain }}</td>
+                        <td>
+                            <a href="{{ p.page_url }}" target="_blank"
+                               rel="noopener noreferrer">
+                                {{ p.page_url }}
+                            </a>
+                        </td>
+                        <td>{{ p.captured_at }}</td>
+                        <td><code>{{ p.content_hash[:12] }}...</code></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>No pricing snapshots yet</h3>
+            <p>
+                Scan a competitor with an accessible pricing page
+                to establish a baseline.
+            </p>
+        </div>
+        {% endif %}
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">SEO INTELLIGENCE</p>
+                <h2>Keyword intelligence</h2>
+            </div>
+            <span class="count-badge">
+                {{ keyword_rows|length }} keywords
+            </span>
+        </div>
+
+        <p class="section-description">
+            Keywords extracted from articles. Search volume is displayed
+            only when returned by the configured API.
+        </p>
+
+        {% if keyword_rows %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>COMPETITOR</th>
+                        <th>ARTICLE</th>
+                        <th>KEYWORD</th>
+                        <th>MONTHLY SEARCH VOLUME</th>
+                        <th>SOURCE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for k in keyword_rows %}
+                    <tr>
+                        <td>{{ k.domain }}</td>
+                        <td>{{ k.title or "Untitled article" }}</td>
+                        <td>{{ k.keyword }}</td>
+                        <td>
+                            {% if k.search_volume is not none %}
+                                {{ k.search_volume }}
+                            {% else %}
+                                Not available
+                            {% endif %}
+                        </td>
+                        <td>{{ k.volume_source or "Unavailable" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <h3>No keyword data yet</h3>
+            <p>
+                New or previously unenriched articles will be processed
+                during a scan. API search-volume data requires valid
+                credentials and access.
+            </p>
+        </div>
+        {% endif %}
+    </section>
+
+    <footer class="footer">
+        <span>COMPETITOR MONITOR</span>
+        <span>Built with Python, Flask &amp; SQLite</span>
+    </footer>
+
+</main>
+</body>
+</html>

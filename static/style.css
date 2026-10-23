@@ -1,0 +1,582 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #0a0d16;
+    color: #edf0fa;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 7%;
+    border-bottom: 1px solid #252b3d;
+}
+
+.brand {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    color: #9b8cff;
+    margin-left: 5px;
+}
+
+.status, .eyebrow {
+    color: #65dbc0;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+main {
+    width: min(1100px, 90%);
+    margin: auto;
+}
+
+.hero {
+    padding: 55px 0 30px;
+}
+
+h1 {
+    font-size: clamp(36px, 6vw, 62px);
+    line-height: 1.08;
+    margin: 15px 0;
+}
+
+h1 span {
+    color: #a69aff;
+}
+
+.subtitle, .empty {
+    color: #a1abc1;
+    line-height: 1.7;
+}
+
+.panel, .stat {
+    background: #111625;
+    border: 1px solid #252d43;
+    border-radius: 14px;
+    padding: 24px;
+    margin: 20px 0;
+}
+
+.panel h2 {
+    font-size: 18px;
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    gap: 12px;
+}
+
+input {
+    flex: 1;
+    min-width: 0;
+    padding: 15px;
+    color: white;
+    background: #090d18;
+    border: 1px solid #303953;
+    border-radius: 8px;
+    outline-color: #9585ff;
+}
+
+button {
+    padding: 14px 20px;
+    border: 0;
+    border-radius: 8px;
+    background: #9281ff;
+    color: #101020;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b2a7ff;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.stat p {
+    font-size: 11px;
+    color: #9ca7c1;
+    letter-spacing: 1px;
+}
+
+.stat h2 {
+    font-size: 30px;
+    margin-bottom: 0;
+}
+
+.stat .small {
+    font-size: 17px;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+th, td {
+    padding: 15px 12px;
+    text-align: left;
+    border-bottom: 1px solid #252d43;
+    vertical-align: top;
+}
+
+th {
+    color: #a5afc6;
+    font-size: 11px;
+}
+
+td {
+    font-size: 13px;
+}
+
+a {
+    color: #b4a8ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.description {
+    color: #98a3ba;
+    line-height: 1.5;
+}
+
+.success, .error {
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 7px;
+    line-height: 1.5;
+}
+
+.success {
+    background: #10352f;
+    color: #8ce4c8;
+}
+
+.error {
+    background: #3a2029;
+    color: #ffb5c2;
+}
+
+footer {
+    padding: 30px 0;
+    color: #8993a9;
+    font-size: 12px;
+}
+
+@media (max-width: 650px) {
+    header {
+        padding: 20px 5%;
+    }
+
+    .status {
+        font-size: 9px;
+    }
+
+    form {
+        flex-direction: column;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+}
+
+.topbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 7%;
+    background: #0a0d16;
+    border-bottom: 1px solid #252d43;
+}
+
+.brand {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    color: #a69aff;
+}
+
+.status {
+    color: #9ca7c1;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 7px;
+    background: #65dbc0;
+    border-radius: 50%;
+}
+
+.container {
+    width: min(1000px, 90%);
+    margin: 0 auto;
+}
+
+.hero {
+    padding: 54px 0 30px;
+}
+
+.hero h1 {
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+}
+
+.hero h1 span {
+    color: #a69aff;
+}
+
+.eyebrow {
+    color: #65dbc0;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.panel {
+    background: #111625;
+    border: 1px solid #252d43;
+    border-radius: 13px;
+    padding: 22px;
+    margin: 20px 0;
+}
+
+.scan-panel form {
+    display: flex;
+    gap: 10px;
+}
+
+.scan-panel input {
+    flex: 1;
+    min-width: 0;
+}
+
+.scan-panel button {
+    white-space: nowrap;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background: #111625;
+    border: 1px solid #252d43;
+    border-radius: 13px;
+    padding: 23px;
+}
+
+.stat-label {
+    color: #a5afc6;
+    font-size: 10px;
+    letter-spacing: 1.3px;
+}
+
+.stat-card h2 {
+    margin: 16px 0 8px;
+    font-size: 30px;
+}
+
+.stat-card .date-value {
+    font-size: 18px;
+}
+
+.stat-description,
+.section-description,
+.footnote {
+    color: #98a3ba;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.section-heading .eyebrow {
+    margin-bottom: 8px;
+}
+
+.section-heading h2 {
+    margin: 0;
+}
+
+.count-badge {
+    flex-shrink: 0;
+    padding: 7px 10px;
+    border: 1px solid #343d58;
+    border-radius: 20px;
+    color: #c3baff;
+    font-size: 11px;
+}
+
+.table-wrap {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+.table-wrap th,
+.table-wrap td {
+    padding: 15px 10px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #252d43;
+    font-size: 12px;
+}
+
+.table-wrap th {
+    color: #a5afc6;
+    font-size: 10px;
+    letter-spacing: 0.6px;
+}
+
+.table-wrap td {
+    overflow-wrap: anywhere;
+}
+
+.article-cell {
+    min-width: 260px;
+}
+
+.description {
+    color: #98a3ba;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+.table-wrap a {
+    color: #b4a8ff;
+    overflow-wrap: anywhere;
+}
+
+.table-wrap code {
+    color: #65dbc0;
+    font-size: 11px;
+}
+
+.alert {
+    padding: 13px;
+    margin-top: 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.alert p {
+    margin: 4px 0 0;
+}
+
+.alert.success {
+    background: #10352f;
+    color: #8ce4c8;
+}
+
+.alert.error {
+    background: #3a2029;
+    color: #ffb5c2;
+}
+
+.empty-state {
+    padding: 18px 0;
+}
+
+.empty-state h3 {
+    font-size: 15px;
+}
+
+.empty-state p {
+    color: #98a3ba;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.footnote {
+    margin-top: 18px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 25px 0 35px;
+    color: #98a3ba;
+    font-size: 11px;
+}
+
+@media (max-width: 650px) {
+    .topbar {
+        padding: 18px 5%;
+    }
+
+    .status {
+        font-size: 8px;
+    }
+
+    .container {
+        width: 92%;
+    }
+
+    .scan-panel form {
+        flex-direction: column;
+    }
+
+    .scan-panel button {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading {
+        align-items: flex-start;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+}
+
+.section-description,
+.stat-description,
+.footnote {
+    color: #98a3ba;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    margin: 0;
+}
+
+.count-badge {
+    padding: 7px 10px;
+    border: 1px solid #343d58;
+    border-radius: 20px;
+    color: #c3baff;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.empty-state {
+    padding: 18px 0;
+}
+
+.empty-state p {
+    color: #98a3ba;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-right: 6px;
+    border-radius: 50%;
+    background: #65dbc0;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.table-wrap table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 550px;
+}
+
+.table-wrap th,
+.table-wrap td {
+    padding: 13px 10px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #252d43;
+    overflow-wrap: anywhere;
+}
+
+.table-wrap th {
+    color: #a5afc6;
+    font-size: 10px;
+}
+
+.table-wrap td {
+    font-size: 12px;
+}
+
+.table-wrap code {
+    color: #65dbc0;
+    font-size: 11px;
+}
+
+@media (max-width: 650px) {
+    .section-heading {
+        align-items: flex-start;
+    }
+
+    .container {
+        width: 92%;
+    }
+}
+
