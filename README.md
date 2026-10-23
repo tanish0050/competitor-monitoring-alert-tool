@@ -2,7 +2,7 @@
 
 A web-based competitive intelligence tool built with Flask and Python to monitor competitor content, track pricing-page changes, extract SEO keywords, and send email alerts when new content is detected.
 
-## Live Link - https://competitor-monitoring-alert-tool.onrender.com
+## Live Link -  https://competitor-monitoring-alert-tool.onrender.com
 
 ## 🚀 Features
 
